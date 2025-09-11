@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'coreapi',
     'usuarios',
     'rest_framework',
     'productos',
@@ -48,17 +49,25 @@ INSTALLED_APPS = [
     'reseñas',
     'deseos',
     'analitica',
+    'corsheaders',
+
 
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # URL de tu frontend en desarrollo (ajústalo según sea necesario)
+    "https://tu_dominio.com",  # Si tienes un dominio en producción
 ]
 
 ROOT_URLCONF = 'ecommerce.urls'
@@ -111,8 +120,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# settings.py
 AUTH_USER_MODEL = 'usuarios.Usuario'
+
 
 
 

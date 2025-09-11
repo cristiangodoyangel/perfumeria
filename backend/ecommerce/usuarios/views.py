@@ -1,27 +1,20 @@
-
-from rest_framework import viewsets, permissions, generics
-from .serializers import UsuarioSerializer, RegistroUsuarioSerializer
+# usuarios/views.py
+from rest_framework import viewsets
 from .models import Usuario
-
-
+from .serializers import UsuarioSerializer
+from rest_framework.permissions import IsAuthenticated
+from rest_framework import generics
+from .serializers import RegistroUsuarioSerializer  
+from rest_framework.permissions import AllowAny
 
 class UsuarioViewSet(viewsets.ModelViewSet):
+    queryset = Usuario.objects.all()
     serializer_class = UsuarioSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [AllowAny]  # Si deseas autenticación en este endpoint
 
-    def get_queryset(self):
-        # Solo permite ver/editar/eliminar el propio usuario
-        return Usuario.objects.filter(id=self.request.user.id)
-
-    def get_serializer_class(self):
-        if self.action == 'create':
-            return RegistroUsuarioSerializer
-        return UsuarioSerializer
-
-    def perform_create(self, serializer):
-        serializer.save()
+    # Puedes personalizar los métodos de la vista según lo necesites
 
 class RegistroUsuarioView(generics.CreateAPIView):
     queryset = Usuario.objects.all()
     serializer_class = RegistroUsuarioSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [AllowAny]
