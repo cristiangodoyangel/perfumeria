@@ -8,6 +8,7 @@ class Producto(models.Model):
 	imagen = models.ImageField(upload_to='productos/', blank=True, null=True)
 	activo = models.BooleanField(default=True)
 	creado = models.DateTimeField(auto_now_add=True)
+	stock = models.PositiveIntegerField(default=0) 
 
 	def __str__(self):
 		return self.nombre
