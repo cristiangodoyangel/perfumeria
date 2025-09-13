@@ -1,8 +1,7 @@
-# usuarios/urls.py
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import UsuarioViewSet, RegistroUsuarioView
-from rest_framework.documentation import include_docs_urls # Asegúrate de que esta importación esté correcta
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
 router = DefaultRouter()
 router.register(r'usuarios', UsuarioViewSet, basename='usuario')
@@ -10,6 +9,7 @@ router.register(r'usuarios', UsuarioViewSet, basename='usuario')
 urlpatterns = [
     path('registro/', RegistroUsuarioView.as_view(), name='registro-usuario'),
     path('', include(router.urls)),
-    path('docs/', include_docs_urls(title='API Documentation')),
-
+    path('schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
 ]
