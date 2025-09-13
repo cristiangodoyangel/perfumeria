@@ -10,9 +10,9 @@ from rest_framework.permissions import AllowAny
 class UsuarioViewSet(viewsets.ModelViewSet):
     queryset = Usuario.objects.all()
     serializer_class = UsuarioSerializer
-    permission_classes = [AllowAny]  # Si deseas autenticación en este endpoint
+    permission_classes = [IsAuthenticated] 
 
-    # Puedes personalizar los métodos de la vista según lo necesites
+   
 
 class RegistroUsuarioView(generics.CreateAPIView):
     queryset = Usuario.objects.all()
