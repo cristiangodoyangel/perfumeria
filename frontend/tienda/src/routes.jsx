@@ -1,9 +1,10 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Inicio from './pages/inicio';
-import Productos from './pages/Productos';
-import Carrito from './pages/Carrito';
-import Checkout from './pages/Checkout';
-import Categorias from './pages/Categorias';
+import Inicio from "./assets/pages/Inicio";
+import Productos from "./assets/pages/Productos";
+import Carrito from "./assets/pages/Carrito";
+import Checkout from "./assets/pages/Checkout";
+import Categorias from "./assets/pages/Categorias";
+
 
 const Rutas = () => (
   <Router>

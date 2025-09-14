@@ -1,6 +1,9 @@
 import React from "react";
 import Categories from "../components/Categories";  // Importa desde components
-import ProductCard from "../components/ProductCard";  // Importa desde components
+
+// Inicio.jsx
+import { ProductCard } from "../components/ProductCard";
+
 
 
 const Inicio = () => {
