@@ -55,9 +55,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',  
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -65,10 +65,21 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # URL de tu frontend en desarrollo (ajústalo según sea necesario)
-    "https://tu_dominio.com",  # Si tienes un dominio en producción
+    "https://tu_dominio.com", 
+    "http://localhost:5173",
+    
 ]
+
+CORS_ALLOW_HEADERS = [
+    'content-type',
+    'Authorization',  # Permite el encabezado de autorización
+    'accept',
+    'X-Requested-With',
+]
+CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'ecommerce.urls'
 
@@ -155,9 +166,7 @@ REST_FRAMEWORK = {
     
 }
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # Ajusta según sea necesario
-]
+
 
 
 
