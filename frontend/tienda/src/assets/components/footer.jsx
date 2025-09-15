@@ -13,6 +13,7 @@ import {
   CreditCard,
   Award
 } from 'lucide-react';
+import logo from '../img/logo.png';
 
 const footerLinks = {
   productos: [
@@ -46,19 +47,19 @@ const socialLinks = [
     name: 'Facebook', 
     icon: Facebook, 
     href: '#',
-    color: 'hover:text-blue-600'
+    color: '#4267B2'
   },
   { 
     name: 'Instagram', 
     icon: Instagram, 
     href: '#',
-    color: 'hover:text-pink-600'
+    color: '#E1306C'
   },
   { 
     name: 'Twitter', 
     icon: Twitter, 
     href: '#',
-    color: 'hover:text-blue-400'
+    color: '#1DA1F2'
   }
 ];
 
@@ -87,18 +88,18 @@ const features = [
 
 export function Footer() {
   return (
-    <footer className="bg-gradient-to-b from-life-light-pink to-white border-t">
+    <footer style={{ background: 'linear-gradient(to bottom, #f6dae7, #fff)', borderTop: '1px solid #f83258' }}>
       {/* Features section */}
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
             <div key={index} className="flex items-center gap-4 p-4 bg-white rounded-lg shadow-sm">
-              <div className="bg-life-red/10 p-3 rounded-full">
-                <feature.icon className="h-6 w-6 text-life-red" />
+              <div style={{ background: '#f832581A' }} className="p-3 rounded-full">
+                <feature.icon className="h-6 w-6" style={{ color: '#8c000f' }} />
               </div>
               <div>
-                <h3 className="font-semibold text-gray-900">{feature.title}</h3>
-                <p className="text-sm text-gray-600">{feature.description}</p>
+                <h3 className="font-semibold" style={{ color: '#8c000f' }}>{feature.title}</h3>
+                <p className="text-sm" style={{ color: '#f83258' }}>{feature.description}</p>
               </div>
             </div>
           ))}
@@ -113,48 +114,57 @@ export function Footer() {
           {/* Brand and contact info */}
           <div className="lg:col-span-2 space-y-6">
             <div className="flex items-center gap-3">
-              <div className="h-12 w-24 bg-gradient-to-r from-life-red to-life-pink rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-2xl">LIFE</span>
-              </div>
+                <div className="flex items-center flex-shrink-0 pl-8">
+                         <img
+                           src={logo}
+                           alt="Logo Life"
+                           className="h-16 w-auto object-contain"
+                         />
+                       </div>
             </div>
 
-            <p className="text-gray-600 max-w-md">
+            <p style={{ color: '#8c000f' }} className="max-w-md">
               Tu tienda de confianza en Antofagasta para productos íntimos de calidad premium. 
               Discreción, calidad y experiencia garantizada.
             </p>
 
             {/* Contact information */}
             <div className="space-y-3">
-              <div className="flex items-center gap-3 text-gray-600">
-                <MapPin className="h-5 w-5 text-life-red" />
+              <div className="flex items-center gap-3" style={{ color: '#f83258' }}>
+                <MapPin className="h-5 w-5" style={{ color: '#8c000f' }} />
                 <span>Av. Argentina 2547, Antofagasta</span>
               </div>
-              <div className="flex items-center gap-3 text-gray-600">
-                <Phone className="h-5 w-5 text-life-red" />
+              <div className="flex items-center gap-3" style={{ color: '#f83258' }}>
+                <Phone className="h-5 w-5" style={{ color: '#8c000f' }} />
                 <span>+56 55 234 5678</span>
               </div>
-              <div className="flex items-center gap-3 text-gray-600">
-                <Mail className="h-5 w-5 text-life-red" />
+              <div className="flex items-center gap-3" style={{ color: '#f83258' }}>
+                <Mail className="h-5 w-5" style={{ color: '#8c000f' }} />
                 <span>contacto@lifesexshop.cl</span>
               </div>
-              <div className="flex items-center gap-3 text-gray-600">
-                <Clock className="h-5 w-5 text-life-red" />
+              <div className="flex items-center gap-3" style={{ color: '#f83258' }}>
+                <Clock className="h-5 w-5" style={{ color: '#8c000f' }} />
                 <span>Lun - Sáb: 10:00 - 20:00</span>
               </div>
             </div>
 
             {/* Social media */}
             <div>
-              <h4 className="font-semibold text-gray-900 mb-3">Síguenos</h4>
+              <h4 className="font-semibold mb-3" style={{ color: '#8c000f' }}>Síguenos</h4>
               <div className="flex gap-3">
                 {socialLinks.map((social) => (
                   <Button
                     key={social.name}
                     variant="outline"
                     size="sm"
-                    className={`h-10 w-10 p-0 border-gray-300 ${social.color} transition-colors`}
+                    className="h-10 w-10 p-0 border-gray-300 transition-colors"
+                    style={{
+                      borderColor: '#f83258',
+                      color: social.color,
+                      background: '#f6dae7'
+                    }}
                   >
-                    <social.icon className="h-5 w-5" />
+                    <social.icon className="h-5 w-5" style={{ color: social.color }} />
                   </Button>
                 ))}
               </div>
@@ -163,13 +173,14 @@ export function Footer() {
 
           {/* Productos */}
           <div>
-            <h4 className="font-semibold text-gray-900 mb-4">Productos</h4>
+            <h4 className="font-semibold mb-4" style={{ color: '#8c000f' }}>Productos</h4>
             <ul className="space-y-3">
               {footerLinks.productos.map((link) => (
                 <li key={link.name}>
                   <a 
                     href={link.href}
-                    className="text-gray-600 hover:text-life-red transition-colors"
+                    style={{ color: '#f83258' }}
+                    className="transition-colors hover:underline"
                   >
                     {link.name}
                   </a>
@@ -180,13 +191,14 @@ export function Footer() {
 
           {/* Información */}
           <div>
-            <h4 className="font-semibold text-gray-900 mb-4">Información</h4>
+            <h4 className="font-semibold mb-4" style={{ color: '#8c000f' }}>Información</h4>
             <ul className="space-y-3">
               {footerLinks.informacion.map((link) => (
                 <li key={link.name}>
                   <a 
                     href={link.href}
-                    className="text-gray-600 hover:text-life-red transition-colors"
+                    style={{ color: '#f83258' }}
+                    className="transition-colors hover:underline"
                   >
                     {link.name}
                   </a>
@@ -197,13 +209,14 @@ export function Footer() {
 
           {/* Atención al Cliente */}
           <div>
-            <h4 className="font-semibold text-gray-900 mb-4">Atención al Cliente</h4>
+            <h4 className="font-semibold mb-4" style={{ color: '#8c000f' }}>Atención al Cliente</h4>
             <ul className="space-y-3">
               {footerLinks.atencion.map((link) => (
                 <li key={link.name}>
                   <a 
                     href={link.href}
-                    className="text-gray-600 hover:text-life-red transition-colors"
+                    style={{ color: '#f83258' }}
+                    className="transition-colors hover:underline"
                   >
                     {link.name}
                   </a>
@@ -218,20 +231,35 @@ export function Footer() {
 
       {/* Newsletter section */}
       <div className="container mx-auto px-4 py-8">
-        <div className="bg-gradient-to-r from-life-red to-life-pink rounded-2xl p-8 text-center text-white">
+        <div
+          className="rounded-2xl p-8 text-center"
+          style={{ background: 'linear-gradient(to right, #8c000f, #f83258)', color: '#fff' }}
+        >
           <h3 className="text-xl font-bold mb-2">
             Mantente Informado
           </h3>
-          <p className="text-white/90 mb-6">
+          <p style={{ color: '#f6dae7' }} className="mb-6">
             Recibe ofertas exclusivas y novedades en tu email
           </p>
           <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <input
               type="email"
               placeholder="Tu email aquí..."
-              className="flex-1 px-4 py-3 rounded-lg text-gray-900 placeholder-gray-500"
+              className="flex-1 px-4 py-3 rounded-lg"
+              style={{
+                color: '#8c000f',
+                background: '#f6dae7',
+                border: '1px solid #f83258'
+              }}
             />
-            <Button className="bg-white text-life-red hover:bg-white/90 px-6">
+            <Button
+              className="px-6"
+              style={{
+                background: '#fff',
+                color: '#8c000f',
+                border: '1px solid #f83258'
+              }}
+            >
               Suscribirse
             </Button>
           </div>
@@ -243,20 +271,20 @@ export function Footer() {
       {/* Bottom footer */}
       <div className="container mx-auto px-4 py-6">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="text-sm text-gray-600">
+          <div style={{ color: '#8c000f' }} className="text-sm">
             © 2024 LIFE Sex Shop. Todos los derechos reservados.
           </div>
           
-          <div className="flex items-center gap-4 text-sm text-gray-600">
+          <div className="flex items-center gap-4 text-sm" style={{ color: '#f83258' }}>
             <span>Método de pago seguro:</span>
             <div className="flex items-center gap-2">
-              <div className="bg-blue-600 text-white px-2 py-1 rounded text-xs font-semibold">
+              <div style={{ background: '#8c000f', color: '#fff' }} className="px-2 py-1 rounded text-xs font-semibold">
                 WEBPAY
               </div>
-              <div className="bg-gray-800 text-white px-2 py-1 rounded text-xs font-semibold">
+              <div style={{ background: '#f83258', color: '#fff' }} className="px-2 py-1 rounded text-xs font-semibold">
                 VISA
               </div>
-              <div className="bg-red-600 text-white px-2 py-1 rounded text-xs font-semibold">
+              <div style={{ background: '#f6dae7', color: '#8c000f', border: '1px solid #f83258' }} className="px-2 py-1 rounded text-xs font-semibold">
                 MC
               </div>
             </div>
@@ -265,7 +293,7 @@ export function Footer() {
       </div>
 
       {/* Age verification notice */}
-      <div className="bg-life-red text-white py-3">
+      <div style={{ background: '#8c000f', color: '#fff' }} className="py-3">
         <div className="container mx-auto px-4 text-center">
           <p className="text-sm">
             🔞 Sitio solo para mayores de 18 años. Al continuar navegando, confirmas que eres mayor de edad.

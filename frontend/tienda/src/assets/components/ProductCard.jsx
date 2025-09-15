@@ -53,49 +53,80 @@ export function ProductCard({ product }) {
     console.log('Quick view:', productData.id);
   };
 
-  return (
+return (
     <Card
-      className="group relative overflow-hidden border-0 shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer"
+      className="group relative overflow-hidden border-0 shadow-md transition-all duration-300 cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      style={{
+        background: '#ffffffff', // Terciario
+        boxShadow: isHovered
+          ? '0 8px 32px 0 rgba(248, 50, 88, 0.25)' // sombra rosa al hacer hover
+          : '0 2px 8px 0 rgba(140, 0, 15, 0.10)'   // sombra principal suave
+      }}
     >
       <CardContent className="p-0">
         {/* Product image */}
-        <div className="relative h-64 overflow-hidden bg-gradient-to-br from-life-light-pink/20 to-white">
+        <div
+          className="relative h-64 overflow-hidden"
+          style={{
+            background: 'linear-gradient(135deg, #f6dae7 20%, #fff 100%)'
+          }}
+        >
           <ImageWithFallback
             src={productData.image}
             alt={productData.name}
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
           />
-          
+
           {/* Overlay with actions - only show on hover */}
           <div className={`absolute inset-0 bg-black/40 transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
             <div className="absolute top-4 right-4 flex flex-col gap-2">
               <Button
                 size="sm"
                 variant="ghost"
-                className="bg-white/90 hover:bg-white text-gray-700 h-8 w-8 p-0 rounded-full"
+                className="h-8 w-8 p-0 rounded-full"
+                style={{
+                  background: '#fff',
+                  color: isWishlisted ? '#8c000f' : '#f83258',
+                  border: `1px solid #f83258`
+                }}
                 onClick={handleWishlistToggle}
               >
-                <Heart className={`h-4 w-4 ${isWishlisted ? 'fill-life-red text-life-red' : ''}`} />
+                <Heart
+                  className="h-4 w-4"
+                  style={{
+                    fill: isWishlisted ? '#8c000f' : 'none',
+                    color: isWishlisted ? '#8c000f' : '#f83258'
+                  }}
+                />
               </Button>
               <Button
                 size="sm"
                 variant="ghost"
-                className="bg-white/90 hover:bg-white text-gray-700 h-8 w-8 p-0 rounded-full"
+                className="h-8 w-8 p-0 rounded-full"
+                style={{
+                  background: '#fff',
+                  color: '#f83258',
+                  border: `1px solid #f83258`
+                }}
                 onClick={handleQuickView}
               >
-                <Eye className="h-4 w-4" />
+                <Eye className="h-4 w-4" style={{ color: '#f83258' }} />
               </Button>
             </div>
-            
+
             <div className="absolute bottom-4 left-4 right-4">
-              <Button 
-                className="w-full bg-life-red hover:bg-life-dark-red text-white"
+              <Button
+                className="w-full"
+                style={{
+                  background: productData.inStock ? '#8c000f' : '#f83258',
+                  color: '#fff'
+                }}
                 onClick={handleAddToCart}
                 disabled={!productData.inStock}
               >
-                <ShoppingCart className="h-4 w-4 mr-2" />
+                <ShoppingCart className="h-4 w-4 mr-2" style={{ color: '#fff' }} />
                 {productData.inStock ? 'Agregar al Carrito' : 'Agotado'}
               </Button>
             </div>
@@ -104,17 +135,36 @@ export function ProductCard({ product }) {
           {/* Badges */}
           <div className="absolute top-4 left-4 flex flex-col gap-2">
             {productData.isNew && (
-              <Badge className="bg-life-pink text-white border-0">
+              <Badge
+                className="border-0"
+                style={{
+                  background: '#f83258',
+                  color: '#fff'
+                }}
+              >
                 Nuevo
               </Badge>
             )}
             {productData.isOnSale && productData.discount && (
-              <Badge className="bg-life-red text-white border-0">
+              <Badge
+                className="border-0"
+                style={{
+                  background: '#8c000f',
+                  color: '#fff'
+                }}
+              >
                 -{productData.discount}%
               </Badge>
             )}
             {!productData.inStock && (
-              <Badge variant="secondary" className="bg-gray-500 text-white border-0">
+              <Badge
+                variant="secondary"
+                className="border-0"
+                style={{
+                  background: '#f83258',
+                  color: '#fff'
+                }}
+              >
                 Agotado
               </Badge>
             )}
@@ -124,17 +174,23 @@ export function ProductCard({ product }) {
         {/* Product info */}
         <div className="p-4 space-y-3">
           {/* Category */}
-          <div className="text-xs text-life-red font-medium uppercase tracking-wide">
+          <div
+            className="text-xs font-medium uppercase tracking-wide"
+            style={{ color: '#8c000f' }}
+          >
             {productData.category}
           </div>
 
           {/* Product name */}
-          <h3 className="font-semibold text-gray-900 group-hover:text-life-red transition-colors line-clamp-2">
+          <h3
+            className="font-semibold group-hover:underline transition-colors line-clamp-2"
+            style={{ color: '#8c000f' }}
+          >
             {productData.name}
           </h3>
 
           {/* Description */}
-          <p className="text-sm text-gray-600 line-clamp-2">
+          <p className="text-sm line-clamp-2" style={{ color: '#f83258' }}>
             {productData.description}
           </p>
 
@@ -144,26 +200,26 @@ export function ProductCard({ product }) {
               {[...Array(5)].map((_, i) => (
                 <Star
                   key={i}
-                  className={`h-4 w-4 ${
-                    i < Math.floor(productData.rating)
-                      ? 'fill-yellow-400 text-yellow-400'
-                      : 'text-gray-300'
-                  }`}
+                  className="h-4 w-4"
+                  style={{
+                    fill: i < Math.floor(productData.rating) ? '#ffffffff' : 'none',
+                    color: i < Math.floor(productData.rating) ? '#f83258' : '#ccc'
+                  }}
                 />
               ))}
             </div>
-            <span className="text-sm text-gray-600">
+            <span className="text-sm" style={{ color: '#8c000f' }}>
               {productData.rating} ({productData.reviewCount})
             </span>
           </div>
 
           {/* Price */}
           <div className="flex items-center gap-2">
-            <span className="text-lg font-bold text-life-red">
+            <span className="text-lg font-bold" style={{ color: '#8c000f' }}>
               {formatPrice(productData.price)}
             </span>
             {productData.originalPrice && productData.originalPrice > productData.price && (
-              <span className="text-sm text-gray-500 line-through">
+              <span className="text-sm line-through" style={{ color: '#f83258' }}>
                 {formatPrice(productData.originalPrice)}
               </span>
             )}
@@ -171,12 +227,16 @@ export function ProductCard({ product }) {
 
           {/* Mobile add to cart button */}
           <div className="md:hidden">
-            <Button 
-              className="w-full bg-life-red hover:bg-life-dark-red text-white"
+            <Button
+              className="w-full"
+              style={{
+                background: productData.inStock ? '#8c000f' : '#f83258',
+                color: '#fff'
+              }}
               onClick={handleAddToCart}
               disabled={!productData.inStock}
             >
-              <ShoppingCart className="h-4 w-4 mr-2" />
+              <ShoppingCart className="h-4 w-4 mr-2" style={{ color: '#fff' }} />
               {productData.inStock ? 'Agregar' : 'Agotado'}
             </Button>
           </div>

@@ -22,7 +22,7 @@ h1, h2, h3 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #ff66b2;
+  background-color: #087441;
   padding: 15px 30px;
   color: white;
   position: fixed;
@@ -59,7 +59,7 @@ h1, h2, h3 {
 .title {
   text-align: center;
   font-size: 3rem;
-  color: #ff66b2;
+  color: #055e31;
 }
 
 .description {
@@ -133,7 +133,7 @@ h1, h2, h3 {
 }
 
 .product-card button {
-  background-color: #ff66b2;
+  background-color: #0609a0;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -143,12 +143,12 @@ h1, h2, h3 {
 }
 
 .product-card button:hover {
-  background-color: #ff3385;
+  background-color: #098a79;
 }
 
 /* Footer */
 .footer {
-  background-color: #ff66b2;
+  background-color: #092499;
   color: white;
   text-align: center;
   padding: 20px;
