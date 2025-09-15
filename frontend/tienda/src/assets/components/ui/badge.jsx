@@ -5,19 +5,20 @@ import { cva } from "class-variance-authority";
 
 import { cn } from "./utils"; // Asegúrate de tener la función 'cn' disponible en tu proyecto.
 
+
 const badgeVariants = cva(
-  "inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden",
+  "inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 gap-1 pointer-events-none focus-visible:border-pink-500 focus-visible:ring-pink-200 focus-visible:ring-2 transition-colors overflow-hidden",
   {
     variants: {
       variant: {
         default:
-          "border-transparent bg-primary text-primary-foreground [a&]:hover:bg-primary/90",
+          "border-transparent bg-pink-500 text-white hover:bg-pink-600",
         secondary:
-          "border-transparent bg-secondary text-secondary-foreground [a&]:hover:bg-secondary/90",
+          "border-transparent bg-gray-200 text-gray-800 hover:bg-gray-300",
         destructive:
-          "border-transparent bg-destructive text-white [a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
+          "border-transparent bg-red-500 text-white hover:bg-red-600 focus-visible:ring-red-200 dark:bg-red-700",
         outline:
-          "text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
+          "text-gray-800 border-gray-300 hover:bg-gray-100 hover:text-gray-900",
       },
     },
     defaultVariants: {
