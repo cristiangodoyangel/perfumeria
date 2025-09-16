@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'analitica',
     'corsheaders',
     'drf_spectacular',
+    'categorias',
 
 
 ]

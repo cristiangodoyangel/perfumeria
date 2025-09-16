@@ -9,7 +9,6 @@ const categories = [
   'Para Ella',
   'Para Él', 
   'Parejas',
-  'Afrodisíacos',
   'Cosmética Erótica',
   'Lencería',
   'Accesorios'

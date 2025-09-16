@@ -1,29 +1,50 @@
 import React from "react";
 
+// Importar las imágenes directamente para asegurar la ruta correcta
+import ellaImg from "../img/ella.png";
+import elImg from "../img/el.png";
+import bothImg from "../img/both.png";
+import cosmImg from "../img/cosm.png";
+import dessImg from "../img/dress.png";
+import acceImg from "../img/acce.png";
+
 const categories = [
   {
-    img: "img/para_ella.jpg",
+    img: ellaImg,
     alt: "Para Ella",
     name: "Para Ella",
     count: 156
   },
   {
-    img: "img/para_el.jpg",
+    img: elImg,
     alt: "Para Él",
     name: "Para Él",
     count: 98
   },
   {
-    img: "img/parejas.jpg",
+    img: bothImg,
     alt: "Parejas",
     name: "Parejas",
     count: 87
   },
   {
-    img: "img/cosmetica.jpg",
+    img: cosmImg,
     alt: "Cosmética Erótica",
     name: "Cosmética Erótica",
     count: 72
+  },
+
+  {
+    img: dessImg,
+    alt: "Lencería",
+    name: "Lencería",
+    count: 45
+  },
+  {
+    img: acceImg,
+    alt: "Accesorios",
+    name: "Accesorios",
+    count: 32
   }
 ];
 
@@ -45,7 +66,7 @@ const Categories = () => {
             src={cat.img}
             alt={cat.alt}
             className="w-20 h-20 object-cover rounded-full mb-2"
-            style={{ border: "2px solid #f83258" }}
+        
           />
           <h3
             className="text-base font-semibold"

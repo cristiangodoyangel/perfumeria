@@ -5,13 +5,15 @@ from rest_framework.routers import DefaultRouter
 from usuarios.views import UsuarioViewSet
 from productos.views import ProductoViewSet
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from carrito.views import CarritoViewSet  # Asegúrate de importar el CarritoViewSet
+from carrito.views import CarritoViewSet
+from categorias.views import CategoriaViewSet
 
 # DefaultRouter para manejar las rutas automáticamente
 router = DefaultRouter()
 router.register(r'usuarios', UsuarioViewSet, basename='usuario')  # Usuarios
 router.register(r'productos', ProductoViewSet, basename='producto')  # Productos
 router.register(r'carrito', CarritoViewSet, basename='carrito')  # Carrito de compras
+router.register(r'categorias', CategoriaViewSet, basename='categoria')  # Categorías
 
 urlpatterns = [
     path('admin/', admin.site.urls),
