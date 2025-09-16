@@ -19,7 +19,7 @@ const Inicio = () => {
               </div>
           </section>
           {/* Categorías */}
-          <section className="py-8">
+          <section className="py-5">
               <Categories />
           </section>
 

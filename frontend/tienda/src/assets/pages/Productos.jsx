@@ -1,49 +1,35 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+// src/assets/pages/Productos.jsx
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import ProductCard from '../components/ProductCard';  // Default import
 
-
-const Productos = () => {
-  const [productos, setProductos] = useState([]);
+export default function Productos() {
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/productos") // Asegúrate de que esta URL sea la correcta de tu API
-      .then((response) => {
-        setProductos(response.data);
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/api/productos/');
+        setProducts(response.data);
+      } catch (error) {
+        console.error('Error al obtener los productos:', error);
+      } finally {
         setLoading(false);
-      })
-      .catch((err) => {
-        setError(err);
-        setLoading(false);
-      });
+      }
+    };
+    fetchProducts();
   }, []);
 
   if (loading) {
-    return <div>Cargando productos...</div>;
-  }
-
-  if (error) {
-    return <div>Error al cargar los productos: {error.message}</div>;
+    return <div>Cargando...</div>;
   }
 
   return (
-    <div>
-      <h1>Listado de Productos</h1>
-      <div className="productos-lista">
-        {productos.map((producto) => (
-          <div key={producto.id} className="producto-card">
-            <img src={producto.imagen} alt={producto.name} />
-            <h2>{producto.name}</h2>
-            <p>{producto.descripcion}</p>
-            <p>${producto.price}</p>
-            <button>Agregar al carrito</button>
-          </div>
-        ))}
-      </div>
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5 py-6">
+      {products.map((product) => (
+        <ProductCard key={product.id} product={product} />
+      ))}
     </div>
   );
-};
-
-export default Productos;
+}

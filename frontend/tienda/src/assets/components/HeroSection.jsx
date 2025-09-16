@@ -4,13 +4,17 @@ import { Badge } from './ui/badge.jsx';
 import { Sparkles, Gift, Truck } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import sensImge from '../img/banner/sensaciones.png';
+import parejasImg from '../img/banner/parejas.png';
+import rolImg from '../img/banner/rol.png';
 
 const slides = [
   {
-    badge: "Nueva Colección 2025",
+    badge: <span style={{ color: "var(--color-life-principal)" }}>
+        "Nueva Colección 2025"
+      </span>,
     title: (
       <>
-        Descubre tu
+        <span className="block" style={{ color: "var(--color-life-red)" }}>Descubre tu</span>
         <span className="block" style={{ color: "var(--color-life-sec)" }}>Lado Más Íntimo</span>
       </>
     ),
@@ -22,26 +26,38 @@ const slides = [
     image: sensImge
   },
   {
-    badge: "Especial Parejas",
-    title: (
+    badge: <span style={{ color: "var(--color-life-principal)" }}>
+        "Especial Parejas"
+      </span>,
+     title: (
       <>
-        Vive el
-        <span className="block" style={{ color: "#f83258" }}>Placer en Compañía</span>
+        <span className="block" style={{ color: "var(--color-life-red)" }}>Vive el placer</span>
+        <span className="block" style={{ color: "var(--color-life-sec)" }}>en compañia</span>
       </>
     ),
-    description: "Juguetes y accesorios para disfrutar juntos. ¡Explora nuestras novedades!",
-    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1080&q=80"
+     description:  (
+      <span style={{ color: "var(--color-life-principal)" }}>
+        Juguetes y accesorios para disfrutar juntos. ¡Explora nuestras novedades!
+      </span>
+    ),
+    image: parejasImg
   },
-  {
-    badge: "Regalos Discretos",
-    title: (
+ {
+    badge: <span style={{ color: "var(--color-life-principal)" }}>
+        "Lencería y Más"
+      </span>,
+     title: (
       <>
-        Sorprende con
-        <span className="block" style={{ color: "#8c000f" }}>Detalles Únicos</span>
+        <span className="block" style={{ color: "var(--color-life-red)" }}>Siéntete</span>
+        <span className="block" style={{ color: "var(--color-life-sec)" }}>Aún más sexy</span>
       </>
     ),
-    description: "Envío anónimo y envoltorio especial para sorprender a quien más quieres.",
-    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1080&q=80"
+     description:  (
+      <span style={{ color: "var(--color-life-principal)" }}>
+        Lencería  fina y seductora ¡Explora todo lo que tenemos para ti!
+      </span>
+    ),
+    image: rolImg
   }
 ];
 
@@ -75,22 +91,25 @@ export function HeroSection() {
               <p className="text-xl lg:text-2xl text-white/90 max-w-lg">
                 {slides[current].description}
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+
+              <div className="flex flex-col sm:flex-row gap-8 pl-16">
                 <Button
                  variant="outline"
                   size="lg"
-                  className="bg-sec-500 border-white text-white hover:bg-red hover:text-life-red px-8 py-6 text-lg"
+                  className="text-[var(--color-white)] bg-[var(--color-life-principal)] border-[var(--color-life-principal)] hover:bg-transparent hover:text-[var(--color-life-principal)] hover:border-[var(--color-life-principal)] px-8 py-6 text-lg"
                 >
                   Explorar Productos
                 </Button>
                 <Button
                   variant="outline"
                   size="lg"
-                  className="bg--color-life-sec border-white text-white hover:bg-red hover:text-life-pink px-8 py-6 text-lg"
+                  className="text-[var(--color-white)] bg-[var(--color-life-principal)] border-[var(--color-life-principal)] hover:bg-transparent hover:text-[var(--color-life-principal)] hover:border-[var(--color-life-principal)] px-8 py-6 text-lg"
+
                 >
                   Ver Ofertas
                 </Button>
               </div>
+
               {/* Carousel controls */}
               <div className="flex gap-2 mt-6">
                 <Button
