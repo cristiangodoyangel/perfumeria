@@ -72,6 +72,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://tu_dominio.com", 
     "http://localhost:5173",
     
+    
 ]
 
 CORS_ALLOW_HEADERS = [
@@ -166,6 +167,13 @@ REST_FRAMEWORK = {
     ],
     
 }
+
+# Archivos de medios (para imágenes de productos, documentos, etc.)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+
+
 
 
 

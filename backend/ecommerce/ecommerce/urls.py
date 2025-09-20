@@ -7,19 +7,25 @@ from productos.views import ProductoViewSet
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from carrito.views import CarritoViewSet
 from categorias.views import CategoriaViewSet
+from django.conf import settings
+from django.conf.urls.static import static
 
-# DefaultRouter para manejar las rutas automáticamente
+
 router = DefaultRouter()
-router.register(r'usuarios', UsuarioViewSet, basename='usuario')  # Usuarios
-router.register(r'productos', ProductoViewSet, basename='producto')  # Productos
-router.register(r'carrito', CarritoViewSet, basename='carrito')  # Carrito de compras
-router.register(r'categorias', CategoriaViewSet, basename='categoria')  # Categorías
+router.register(r'usuarios', UsuarioViewSet, basename='usuario') 
+router.register(r'productos', ProductoViewSet, basename='producto') 
+router.register(r'carrito', CarritoViewSet, basename='carrito') 
+router.register(r'categorias', CategoriaViewSet, basename='categoria')  
+
+
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     # API endpoints
-    path('api/', include(router.urls)),  # Incluye el router con todas las rutas
+    path('api/', include(router.urls)), 
 
     # Auth
     path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
@@ -30,3 +36,6 @@ urlpatterns = [
     path('api/swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     path('api/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

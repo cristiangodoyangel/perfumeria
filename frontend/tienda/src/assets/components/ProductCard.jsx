@@ -1,14 +1,15 @@
-// src/assets/components/ProductCard.jsx
 import { useState } from 'react';
 import { Card, CardContent } from './ui/card.jsx';
 import { Button } from './ui/button.jsx';
-import { Badge } from './ui/badge.jsx';
-import { Heart, ShoppingCart, Star, Eye } from 'lucide-react';
-import { ImageWithFallback } from './figma/ImageWithFallback';
+import { Heart, ShoppingCart, Eye, Star } from 'lucide-react';
 
 const ProductCard = ({ product }) => {
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+
+  if (!product) {
+    return <div>Producto no disponible</div>;
+  }
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat('es-CL', {
@@ -47,15 +48,14 @@ const ProductCard = ({ product }) => {
     >
       <CardContent className="p-0">
         <div className="relative h-64 overflow-hidden">
-          <ImageWithFallback
-            src={product.image}
-            alt={product.name}
+          {/* Cambiar ImageWithFallback por img nativo */}
+          <img
+            src={product.imagen}
+            alt={product.nombre || 'Producto'}
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
           />
           <div
-            className={`absolute inset-0 bg-black/40 transition-opacity duration-300 ${
-              isHovered ? 'opacity-100' : 'opacity-0'
-            }`}
+            className={`absolute inset-0 bg-black/40 transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
           >
             <div className="absolute top-4 right-4 flex flex-col gap-2">
               <Button
@@ -65,7 +65,7 @@ const ProductCard = ({ product }) => {
                 style={{
                   background: '#fff',
                   color: isWishlisted ? '#8c000f' : '#f83258',
-                  border: `1px solid #f83258`,
+                  border: '1px solid #f83258',
                 }}
                 onClick={handleWishlistToggle}
               >
@@ -84,7 +84,7 @@ const ProductCard = ({ product }) => {
                 style={{
                   background: '#fff',
                   color: '#f83258',
-                  border: `1px solid #f83258`,
+                  border: '1px solid #f83258',
                 }}
                 onClick={handleQuickView}
               >
@@ -109,20 +109,14 @@ const ProductCard = ({ product }) => {
         </div>
 
         <div className="p-4 space-y-3">
-          <div
-            className="text-xs font-medium uppercase tracking-wide"
-            style={{ color: '#8c000f' }}
-          >
-            {product.category}
+          <div className="text-xs font-medium uppercase tracking-wide" style={{ color: '#8c000f' }}>
+            {product.categoria}
           </div>
-          <h3
-            className="font-semibold group-hover:underline transition-colors line-clamp-2"
-            style={{ color: '#8c000f' }}
-          >
-            {product.name}
+          <h3 className="font-semibold group-hover:underline transition-colors line-clamp-2" style={{ color: '#8c000f' }}>
+            {product.nombre}
           </h3>
           <p className="text-sm line-clamp-2" style={{ color: '#f83258' }}>
-            {product.description}
+            {product.descripcion}
           </p>
           <div className="flex items-center gap-2">
             <div className="flex items-center">
@@ -131,22 +125,22 @@ const ProductCard = ({ product }) => {
                   key={i}
                   className="h-4 w-4"
                   style={{
-                    fill: i < Math.floor(product.rating) ? '#ffffffff' : 'none',
-                    color: i < Math.floor(product.rating) ? '#f83258' : '#ccc',
+                    fill: i < Math.floor(product.rating || 0) ? '#ffffffff' : 'none',
+                    color: i < Math.floor(product.rating || 0) ? '#f83258' : '#ccc',
                   }}
                 />
               ))}
             </div>
             <span className="text-sm" style={{ color: '#8c000f' }}>
-              {product.rating} ({product.reviewCount})
+              {product.rating || 0} ({product.reviewCount || 0})
             </span>
           </div>
 
           <div className="flex items-center gap-2">
             <span className="text-lg font-bold" style={{ color: '#8c000f' }}>
-              {formatPrice(product.price)}
+              {formatPrice(product.precio)}
             </span>
-            {product.originalPrice && product.originalPrice > product.price && (
+            {product.originalPrice && product.originalPrice > product.precio && (
               <span className="text-sm line-through" style={{ color: '#f83258' }}>
                 {formatPrice(product.originalPrice)}
               </span>
@@ -173,4 +167,4 @@ const ProductCard = ({ product }) => {
   );
 };
 
-export default ProductCard; // Default export here
+export default ProductCard;
