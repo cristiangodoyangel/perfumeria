@@ -5,4 +5,4 @@ from .serializers import ProductoSerializer
 class ProductoViewSet(viewsets.ModelViewSet):
 	queryset = Producto.objects.filter(activo=True)
 	serializer_class = ProductoSerializer
-	permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+	permission_classes = [permissions.AllowAny]
