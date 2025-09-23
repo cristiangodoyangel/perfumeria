@@ -2,6 +2,7 @@
 import axios from 'axios';
 
 const API_URL = 'http://127.0.0.1:8000/api/productos/';
+const BASE_URL = 'http://127.0.0.1:8000/'; 
 
 export const fetchProducts = async () => {
   try {
@@ -12,3 +13,28 @@ export const fetchProducts = async () => {
     return [];
   }
 };
+
+const api = axios.create({
+  baseURL: BASE_URL,
+});
+
+// Función para obtener el token del almacenamiento local
+const getAuthToken = () => {
+  return localStorage.getItem('access_token');
+};
+
+// Interceptor para añadir el token JWT en las peticiones
+api.interceptors.request.use(
+  (config) => {
+    const token = getAuthToken();
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+export default api;

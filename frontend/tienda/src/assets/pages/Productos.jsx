@@ -9,7 +9,7 @@ export default function Productos() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/productos/');
+        const response = await api.get('http://localhost:8000/api/productos/');
         setProducts(response.data);  // Asignamos los productos recibidos a la variable 'products'
       } catch (error) {
         console.error('Error al obtener los productos:', error);  // Mostramos el error si ocurre

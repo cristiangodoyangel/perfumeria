@@ -6,6 +6,7 @@ import Carrito from "./assets/pages/Carrito";
 import Checkout from "./assets/pages/Checkout";
 import Categorias from "./assets/pages/Categorias";
 import Listado from "./assets/pages/Listado";
+import Login from "./assets/pages/Login";
 
 const Rutas = () => (
   <Router>
@@ -16,6 +17,7 @@ const Rutas = () => (
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/categoria/:categoriaNombre" element={<Categorias />} />
       <Route path="/Listado" element={<Listado />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
   </Router>
 );
