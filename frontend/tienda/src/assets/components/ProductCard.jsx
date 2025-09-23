@@ -34,6 +34,11 @@ const ProductCard = ({ product }) => {
     console.log('Quick view:', product.id);
   };
 
+  // Función para navegar al producto
+  const handleProductClick = () => {
+    window.location.href = `/producto/${product.id}`;
+  };
+
   // Verificar stock usando el campo correcto del modelo Django
   const hasStock = product.stock && product.stock > 0;
   const isActive = product.activo !== false; // También verificar si está activo
@@ -43,6 +48,7 @@ const ProductCard = ({ product }) => {
       className="group relative overflow-hidden border-0 shadow-md transition-all duration-300 cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={handleProductClick} // Agregada la navegación aquí
       style={{
         background: '#ffffff',
         boxShadow: isHovered
@@ -131,7 +137,7 @@ const ProductCard = ({ product }) => {
                     key={i}
                     className="h-4 w-4"
                     style={{
-                      fill: i < Math.floor(product.rating || 0) ? '#ffffffff' : 'none',
+                      fill: i < Math.floor(product.rating || 0) ? '#f83258' : 'none',
                       color: i < Math.floor(product.rating || 0) ? '#f83258' : '#ccc',
                     }}
                   />

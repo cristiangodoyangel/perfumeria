@@ -128,9 +128,8 @@ export function Header({ onSearchResults }) {
   const handleSearchResultClick = (product) => {
     setShowSearchResults(false);
     setSearchQuery('');
-    // Aquí podrías redirigir al producto específico
-    console.log('Producto seleccionado:', product);
-    // window.location.href = `/producto/${product.id}`;
+    // Navegar al producto específico
+    window.location.href = `/producto/${product.id}`;
   };
 
   // Verificar si el usuario está logueado
@@ -202,6 +201,11 @@ export function Header({ onSearchResults }) {
     }).format(price);
   };
 
+  // Función para manejar clic en logo (ir a inicio)
+  const handleLogoClick = () => {
+    window.location.href = '/';
+  };
+
   return (
     <header className="sticky top-0 z-50 bg-white border-b shadow">
       {/* Barra de anuncio superior */}
@@ -214,7 +218,12 @@ export function Header({ onSearchResults }) {
         <div className="flex items-center justify-between h-16 gap-4">
           {/* Logo */}
           <div className="flex items-center flex-shrink-0 pl-8">
-            <img src={logo} alt="Logo Life" className="h-16 w-auto object-contain" />
+            <img 
+              src={logo} 
+              alt="Logo Life" 
+              className="h-16 w-auto object-contain cursor-pointer" 
+              onClick={handleLogoClick}
+            />
           </div>
 
           {/* Barra de búsqueda */}
@@ -357,7 +366,12 @@ export function Header({ onSearchResults }) {
             </Button>
 
             {/* Carrito de compras */}
-            <Button variant="ghost" size="sm" className="relative">
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="relative"
+              onClick={() => window.location.href = '/carrito'}
+            >
               <ShoppingBag className="h-5 w-5" style={{ color: '#8c000f' }} />
               {cartCount > 0 && (
                 <Badge
@@ -422,6 +436,7 @@ export function Header({ onSearchResults }) {
                   e.currentTarget.style.color = '#8c000f';
                   e.currentTarget.style.backgroundColor = 'transparent';
                 }}
+                onClick={() => window.location.href = `/categoria/${encodeURIComponent(category)}`}
               >
                 {category}
               </Button>
@@ -438,6 +453,7 @@ export function Header({ onSearchResults }) {
               variant="ghost"
               className="justify-start"
               style={{ color: '#8c000f' }}
+              onClick={() => window.location.href = '/login'}
             >
               <User className="h-4 w-4 mr-2" />
               Mi Cuenta
@@ -456,6 +472,7 @@ export function Header({ onSearchResults }) {
                   e.currentTarget.style.color = '#8c000f';
                   e.currentTarget.style.backgroundColor = 'transparent';
                 }}
+                onClick={() => window.location.href = `/categoria/${encodeURIComponent(category)}`}
               >
                 {category}
               </Button>
