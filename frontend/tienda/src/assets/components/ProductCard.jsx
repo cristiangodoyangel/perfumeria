@@ -34,11 +34,21 @@ const ProductCard = ({ product }) => {
     console.log('Quick view:', product.id);
   };
 
+  // Función para navegar al producto
+  const handleProductClick = () => {
+    window.location.href = `/producto/${product.id}`;
+  };
+
+  // Verificar stock usando el campo correcto del modelo Django
+  const hasStock = product.stock && product.stock > 0;
+  const isActive = product.activo !== false; // También verificar si está activo
+
   return (
     <Card
       className="group relative overflow-hidden border-0 shadow-md transition-all duration-300 cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={handleProductClick} // Agregada la navegación aquí
       style={{
         background: '#ffffff',
         boxShadow: isHovered
@@ -48,7 +58,6 @@ const ProductCard = ({ product }) => {
     >
       <CardContent className="p-0">
         <div className="relative h-64 overflow-hidden">
-          {/* Cambiar ImageWithFallback por img nativo */}
           <img
             src={product.imagen}
             alt={product.nombre || 'Producto'}
@@ -95,14 +104,14 @@ const ProductCard = ({ product }) => {
               <Button
                 className="w-full"
                 style={{
-                  background: product.inStock ? '#8c000f' : '#f83258',
+                  background: hasStock && isActive ? '#8c000f' : '#f83258',
                   color: '#fff',
                 }}
                 onClick={handleAddToCart}
-                disabled={!product.inStock}
+                disabled={!hasStock || !isActive}
               >
                 <ShoppingCart className="h-4 w-4 mr-2" style={{ color: '#fff' }} />
-                {product.inStock ? 'Agregar al Carrito' : 'Agotado'}
+                {hasStock && isActive ? 'Agregar al Carrito' : 'Agotado'}
               </Button>
             </div>
           </div>
@@ -118,22 +127,29 @@ const ProductCard = ({ product }) => {
           <p className="text-sm line-clamp-2" style={{ color: '#f83258' }}>
             {product.descripcion}
           </p>
-          <div className="flex items-center gap-2">
-            <div className="flex items-center">
-              {[...Array(5)].map((_, i) => (
-                <Star
-                  key={i}
-                  className="h-4 w-4"
-                  style={{
-                    fill: i < Math.floor(product.rating || 0) ? '#ffffffff' : 'none',
-                    color: i < Math.floor(product.rating || 0) ? '#f83258' : '#ccc',
-                  }}
-                />
-              ))}
+          
+          {/* Mostrar información de stock */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="flex items-center">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    className="h-4 w-4"
+                    style={{
+                      fill: i < Math.floor(product.rating || 0) ? '#f83258' : 'none',
+                      color: i < Math.floor(product.rating || 0) ? '#f83258' : '#ccc',
+                    }}
+                  />
+                ))}
+              </div>
+              <span className="text-sm" style={{ color: '#8c000f' }}>
+                {product.rating || 0} ({product.reviewCount || 0})
+              </span>
             </div>
-            <span className="text-sm" style={{ color: '#8c000f' }}>
-              {product.rating || 0} ({product.reviewCount || 0})
-            </span>
+            <div className="text-xs" style={{ color: hasStock ? '#8c000f' : '#f83258' }}>
+              {hasStock ? `Stock: ${product.stock}` : 'Sin stock'}
+            </div>
           </div>
 
           <div className="flex items-center gap-2">
@@ -151,14 +167,14 @@ const ProductCard = ({ product }) => {
             <Button
               className="w-full"
               style={{
-                background: product.inStock ? '#8c000f' : '#f83258',
+                background: hasStock && isActive ? '#8c000f' : '#f83258',
                 color: '#fff',
               }}
               onClick={handleAddToCart}
-              disabled={!product.inStock}
+              disabled={!hasStock || !isActive}
             >
               <ShoppingCart className="h-4 w-4 mr-2" style={{ color: '#fff' }} />
-              {product.inStock ? 'Agregar' : 'Agotado'}
+              {hasStock && isActive ? 'Agregar' : 'Agotado'}
             </Button>
           </div>
         </div>
