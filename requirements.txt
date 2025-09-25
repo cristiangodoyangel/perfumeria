@@ -1,6 +1,7 @@
 
 Django==4.2.7
 djangorestframework==3.14.0
+djangorestframework-simplejwt==5.3.0
 django-cors-headers==4.3.1
 python-decouple==3.8
 Pillow==10.4.0
@@ -10,6 +11,9 @@ asgiref==3.9.1
 pytz==2025.2
 sqlparse==0.5.3
 tzdata==2025.2
+
+# Panel de administración elegante
+django-jazzmin==2.6.0
 
 # Autenticación y gestión de usuarios
 django-allauth==0.51.0

@@ -3,15 +3,17 @@ import { Search, ShoppingBag, Menu, X, User, Heart } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Badge } from './ui/badge';
-import logo from '../img/logo.png';
+// import logo from '../img/logo.png'; // Logo anterior comentado
+// Logo temporal hasta que agregues tu logo DIOS
+import logoDios from '../images/logo.png'; // Tu nuevo logo árabe
 
 const categories = [
+  'Perfumes Árabes',
   'Para Ella',
   'Para Él',
-  'Parejas',
-  'Cosmética Erótica',
-  'Lencería',
-  'Accesorios'
+  'Fragancias Premium',
+  'Aceites Esenciales',
+  'Inciensos'
 ];
 
 export function Header({ onSearchResults }) {
@@ -207,7 +209,7 @@ export function Header({ onSearchResults }) {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b shadow">
+    <header className="sticky top-0 z-50 bg-gradient-to-r from-black-900 to-black-800 border-b border-gold-500 shadow-lg shadow-gold-500/20">
       {/* Barra de anuncio superior */}
       <div className="py-2 px-4 text-center text-white" style={{ background: 'linear-gradient(to right, #8c000f, #f83258)' }}>
         <p>Envío gratis en compras sobre $30.000 | Retira en nuestra tienda sin costo</p>
@@ -216,14 +218,17 @@ export function Header({ onSearchResults }) {
       {/* Header principal */}
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16 gap-4">
-          {/* Logo */}
+          {/* Logo de Perfumería Árabe DIOS */}
           <div className="flex items-center flex-shrink-0 pl-8">
+            
+            {
             <img 
-              src={logo} 
-              alt="Logo Life" 
+              src={logoDios} 
+              alt="Perfumería Árabe DIOS" 
               className="h-16 w-auto object-contain cursor-pointer" 
               onClick={handleLogoClick}
             />
+            }
           </div>
 
           {/* Barra de búsqueda */}

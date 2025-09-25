@@ -21,27 +21,27 @@ class CarritoTests(APITestCase):
         data = {"producto": self.producto.id, "cantidad": 2}
         response = self.client.post(url, data, format='json')
 
-        # Verifica que la respuesta sea correcta y el producto se haya agregado
+        
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(response.data['producto'], self.producto.id)
         self.assertEqual(response.data['cantidad'], 2)
 
     def test_validar_stock_al_agregar_producto(self):
         url = reverse('carrito-list')
-        data = {"producto": self.producto.id, "cantidad": 15}  # Excede el stock disponible
+        data = {"producto": self.producto.id, "cantidad": 15}  
         response = self.client.post(url, data, format='json')
 
-        # Verifica que el error sea lanzado cuando no hay suficiente stock
+        
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIn('No hay suficiente stock', str(response.data))
 
-    # Agregar este test para asegurarse de que el carrito se asocie con el usuario autenticado
+    
     def test_usuario_asociado_al_carrito(self):
-        # Asegura que el carrito esté asociado al usuario correctamente
+        
         url = reverse('carrito-list')
         data = {"producto": self.producto.id, "cantidad": 2}
         response = self.client.post(url, data, format='json')
 
-        # Verifica que el carrito esté asociado al usuario autenticado
+        
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(response.data['usuario'], self.usuario.id)  # Asegúrate de que 'usuario' esté en los datos de respuesta
